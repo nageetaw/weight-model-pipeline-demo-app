@@ -16,8 +16,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 MODEL_PATH = os.environ.get("MODEL_PATH", "model.joblib")
-model = load(MODEL_PATH)
+model = None
+
+
+def get_model():
+    global model
+    if model is None:
+        from joblib import load
+        model = load(MODEL_PATH)
+    return model
 
 class InputData(BaseModel):
     height: float
@@ -26,13 +35,11 @@ class InputData(BaseModel):
 def welcome():
     return {"success":"Welcome your fastAPI server is working"}
 
+
 @app.post("/predict")
 def predict(data: InputData):
+    m = get_model()
     h = [[data.height]]
-    pred = model.predict(h)
+    pred = m.predict(h)
     return {"height": data.height, "predicted_weight": float(pred[0])}
 
-
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8000))
-    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=True)
