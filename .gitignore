@@ -22,10 +22,7 @@ venv/
 __pycache__/
 *.pyc
 *.pyo
-
-# Model weights / artifacts (optional, if large)
-*.joblib
-*.pkl
+``
 
 # IDE artifacts
 .vscode/
