@@ -10,7 +10,7 @@ export default function App() {
     setLoading(true);
     setWeight(null);
     try {
-      const res = await fetch("${process.env.REACT_APP_API_URL}/api/predict", {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/predict`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ height: Number(height) }),
