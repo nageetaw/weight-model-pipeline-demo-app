@@ -4,9 +4,7 @@ from pydantic import BaseModel
 from joblib import load
 from fastapi.middleware.cors import CORSMiddleware
 import os
-
-MODEL_PATH = os.environ.get("MODEL_PATH", "model.joblib")
-model = load(MODEL_PATH)
+import uvicorn
 
 app = FastAPI()
 
@@ -17,6 +15,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+MODEL_PATH = os.environ.get("MODEL_PATH", "model.joblib")
+model = load(MODEL_PATH)
 
 class InputData(BaseModel):
     height: float
