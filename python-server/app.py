@@ -3,9 +3,11 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from joblib import load
 from fastapi.middleware.cors import CORSMiddleware
+import os
 
 
-model = load("../model/model.joblib")
+MODEL_PATH = os.environ.get("MODEL_PATH", "model/model.joblib")
+model = load(MODEL_PATH)
 
 app = FastAPI()
 
