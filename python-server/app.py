@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import os
 
 
-MODEL_PATH = os.environ.get("MODEL_PATH", "model/model.joblib")
+MODEL_PATH = os.environ.get("MODEL_PATH", "model.joblib")
 model = load(MODEL_PATH)
 
 app = FastAPI()
