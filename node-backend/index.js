@@ -7,7 +7,9 @@ app.use(express.json());
 const PY_API = process.env.PY_API;
 if (!PY_API) console.warn("Warning: PY_API not set");
 
-app.get("/health", (req, res) => res.json({ status: "ok" }));
+app.get("/", (req, res) =>
+  res.json({ status: "Node App is working! Hurray :D" })
+);
 
 app.post("/api/predict", async (req, res) => {
   try {
