@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 
 const cors = require("cors");
-app.use(cors({ origin: "http://localhost:3000", methods: ["GET", "POST"] }));
+app.use(cors());
 
 const PY_API = process.env.PY_API;
 // const PY_API = "http://127.0.0.1:8000";
